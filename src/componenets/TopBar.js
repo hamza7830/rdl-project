@@ -4,7 +4,7 @@ import { Toolbar } from "@material-ui/core";
 const Topbar = () => {
   return (
     <Toolbar>
-      <h2>R-DLA</h2>
+      <h2>Recruiting DataLake</h2>
     </Toolbar>
   );
 };

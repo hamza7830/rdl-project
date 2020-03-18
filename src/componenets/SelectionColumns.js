@@ -43,6 +43,7 @@ const SelectionColumns = props => {
         selected.splice(index, 1);
       }
       setSelectionColumns(selected);
+
       dispatch(setSelectedColumns(selected));
     }
   };

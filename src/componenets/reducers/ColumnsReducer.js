@@ -38,7 +38,7 @@ const columnsReducer = (state = defaultState, action) => {
       newState = {
         ...state,
         isLoading: false,
-        columns: { ...action.response.data.body }
+        columns: action.response.data.body
       };
       return newState;
 

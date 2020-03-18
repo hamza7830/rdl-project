@@ -55,10 +55,16 @@ export const setFilterColumns = columns => dispatch => {
   dispatch(onSetFilterColumns(columns));
 };
 
+const token = "ok";
 export const getColumns = () => dispatch => {
   dispatch(onGetColumnsStarted());
-  const getUrl = `https://z324goejp9.execute-api.us-east-1.amazonaws.com/dev/candidates`;
-  return Axios.get(getUrl)
+  const getUrl =
+    "https://5umr66kn2j.execute-api.us-east-1.amazonaws.com/dev/candidates/attributes";
+  return Axios.get(getUrl, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
     .then(response => {
       if (response.status !== 200) {
         throw Error(response.statusText);
@@ -74,8 +80,12 @@ export const getColumns = () => dispatch => {
 
 export const getResult = params => dispatch => {
   dispatch(onGetResultStarted());
-  const url = `https://z324goejp9.execute-api.us-east-1.amazonaws.com/dev/runquery`;
-  return Axios.post(url, params)
+  const url = `https://5umr66kn2j.execute-api.us-east-1.amazonaws.com/dev/candidates/query`;
+  return Axios.post(url, params, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
     .then(response => {
       if (response.data.statusCode !== 200) {
         throw Error(response.data.body);

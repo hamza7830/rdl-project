@@ -25,7 +25,7 @@ const FilterValues = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { selectedFilterColumns } = props;
-  const [filterValues, setFilterValues] = useState({});
+  let [filterValues, setFilterValues] = useState({});
   const selectedColumns = useSelector(state => state.selectedColumns);
   const filteredValues = useSelector(state => state.filterValues);
 
@@ -38,9 +38,20 @@ const FilterValues = props => {
   };
 
   const onclick = () => {
-    const queryParams = { where: filteredValues, select: selectedColumns };
+    const selectedAttributes = selectedColumns.toString();
+    const filteredAttributes = JSON.stringify(filteredValues)
+      .replace(/:/g, "=")
+      .replace(/{/g, "")
+      .replace(/}/g, "")
+      .replace(/,/g, "&")
+      .replace(/"/g, "");
+    const queryParams = {
+      whereKey: filteredAttributes,
+      select: selectedAttributes
+    };
+    const payload = JSON.stringify(queryParams);
     try {
-      dispatch(getResult(queryParams));
+      dispatch(getResult(payload));
     } catch (error) {
       console.log(error);
     }

@@ -34,14 +34,19 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    const columns = Object.values(columnNames);
-    const columnsNew = columns.map(obj => ({
-      ...obj,
-      label: obj.Name.split("_")
-        .map(subObj => subObj.charAt(0).toUpperCase() + subObj.slice(1))
-        .join(" ")
-    }));
-    setProcessedColumns(columnsNew);
+    let columns, columnsNew;
+    if (columnNames.length > 0) {
+      columns = JSON.parse(columnNames);
+      const columnsField = Object.values(columns) || [];
+      columnsNew = columnsField.map(obj => ({
+        // obj: obj.Name
+        ...obj,
+        label: obj.Name.split("_")
+          .map(subObj => subObj.charAt(0).toUpperCase() + subObj.slice(1))
+          .join(" ")
+      }));
+      setProcessedColumns(columnsNew);
+    }
   }, [columnNames]);
 
   return (
