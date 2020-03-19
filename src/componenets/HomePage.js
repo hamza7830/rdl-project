@@ -39,7 +39,6 @@ const HomePage = () => {
       columns = JSON.parse(columnNames);
       const columnsField = Object.values(columns) || [];
       columnsNew = columnsField.map(obj => ({
-        // obj: obj.Name
         ...obj,
         label: obj.Name.split("_")
           .map(subObj => subObj.charAt(0).toUpperCase() + subObj.slice(1))

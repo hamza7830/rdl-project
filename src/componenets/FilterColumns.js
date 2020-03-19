@@ -9,10 +9,13 @@ import {
   Divider,
   FormControlLabel,
   Checkbox,
+  CardActions,
+  Button,
   Typography
 } from "@material-ui/core";
 import FilterValues from "./FilterValues";
 import ResultBox from "./ResultBox";
+import FeedbackBox from "./FeedbackBox.js";
 
 const useStyles = makeStyles(() => ({
   filtercolumns: { maxHeight: "60vh", overflow: "auto", padding: "10px" },
@@ -83,6 +86,9 @@ const FilterColumns = props => {
       <Divider />
       <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
         <ResultBox selectedFilterColumns={selectedFilterColumns} />
+      </Grid>
+      <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
+        <FeedbackBox selectedFilterColumns={selectedFilterColumns} />
       </Grid>
     </Grid>
   );

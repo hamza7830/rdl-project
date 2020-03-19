@@ -28,6 +28,7 @@ const SelectionColumns = props => {
   const dispatch = useDispatch();
   const { processedColumns } = props;
   const [selectedColumns, setSelectionColumns] = useState([]);
+  let [checkedVariable, setCheckedVariable] = useState("");
 
   const onColumnsSelected = async event => {
     const { name } = event.target;
@@ -42,9 +43,17 @@ const SelectionColumns = props => {
       if (index > -1) {
         selected.splice(index, 1);
       }
+
       setSelectionColumns(selected);
 
       dispatch(setSelectedColumns(selected));
+    }
+  };
+  const onSelectAll = event => {
+    if (event.target.checked) {
+      setCheckedVariable(true);
+    } else {
+      setCheckedVariable(false);
     }
   };
 
@@ -55,6 +64,15 @@ const SelectionColumns = props => {
           <CardContent>
             <Grid item className={classes.item} md={10} sm={12} xs={12}>
               <Typography variant="h5">Selection Columns</Typography>
+              <Divider />
+              <FormControlLabel
+                control={
+                  <div className="checkbox-inline">
+                    <Checkbox onChange={onSelectAll} color="primary" />
+                  </div>
+                }
+                label={"Select All"}
+              />
               <Divider />
               {Object.keys(processedColumns).map(field => {
                 return (

@@ -46,10 +46,12 @@ const FilterValues = props => {
       .replace(/,/g, "&")
       .replace(/"/g, "");
     const queryParams = {
-      whereKey: filteredAttributes,
+      where: filteredAttributes,
       select: selectedAttributes
     };
     const payload = JSON.stringify(queryParams);
+    console.log("pay load is ", payload);
+    debugger;
     try {
       dispatch(getResult(payload));
     } catch (error) {
