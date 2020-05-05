@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilterColumns, getResult } from "./actions/ColumnsActions";
-
 import {
   Card,
   CardContent,
@@ -13,6 +11,8 @@ import {
   Grid,
   TextField
 } from "@material-ui/core";
+
+import { setFilterColumns, getResult } from "./actions/ColumnsActions";
 
 const useStyles = makeStyles(() => ({
   inputbox: { maxHeight: "60vh", overflow: "auto" },
@@ -50,8 +50,6 @@ const FilterValues = props => {
       select: selectedAttributes
     };
     const payload = JSON.stringify(queryParams);
-    console.log("pay load is ", payload);
-    debugger;
     try {
       dispatch(getResult(payload));
     } catch (error) {
@@ -65,7 +63,7 @@ const FilterValues = props => {
         <>
           <Card>
             <Grid item className={classes.inputbox} md={12} xs={12}>
-              <Typography variant="h5">Filter Columns</Typography>
+              <Typography variant="h5">Filter Candidates</Typography>
               <Divider />
               <CardContent>
                 {Object.keys(selectedFilterColumns).map(field => (

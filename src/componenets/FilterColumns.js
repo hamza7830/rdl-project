@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { makeStyles } from "@material-ui/styles";
-
 import {
   Card,
   CardContent,
@@ -9,32 +7,41 @@ import {
   Divider,
   FormControlLabel,
   Checkbox,
-  CardActions,
-  Button,
-  Typography
+  Typography,
 } from "@material-ui/core";
+
 import FilterValues from "./FilterValues";
 import ResultBox from "./ResultBox";
-import FeedbackBox from "./FeedbackBox.js";
+// import DropDownMenus from "./DropDownMenus.js";
 
 const useStyles = makeStyles(() => ({
-  filtercolumns: { maxHeight: "60vh", overflow: "auto", padding: "10px" },
+  filtercolumns: {
+    maxHeight: "60vh",
+    overflow: "auto",
+    padding: "10px",
+  },
+
   item: {
     display: "flex",
     flexDirection: "column",
-    paddingLeft: "5%"
+    paddingLeft: "5%",
   },
+
   resultSelection: {
-    padding: "5%"
-  }
+    padding: "2%",
+  },
+
+  feedbackbox: {
+    paddingTop: "1%",
+    paddingLeft: "50%",
+  },
 }));
 
-const FilterColumns = props => {
+const FilterColumns = (props) => {
   const classes = useStyles();
   const { processedColumns } = props;
   const [selectedFilterColumns, setSelectedFilterColumns] = useState({});
-
-  const onFilterSelected = async event => {
+  const onFilterSelected = async (event) => {
     const { name, value } = event.target;
     if (event.target.checked) {
       const selected = { ...selectedFilterColumns };
@@ -59,7 +66,7 @@ const FilterColumns = props => {
                 Filter Columns
               </Typography>
               <Divider />
-              {Object.keys(processedColumns).map(field => {
+              {Object.keys(processedColumns).map((field) => {
                 return (
                   <FormControlLabel
                     control={
@@ -80,15 +87,14 @@ const FilterColumns = props => {
         </Card>
       </Grid>
       <Grid item md={1}></Grid>
-      <Grid item className={classes.filterValues} md={4} sm={12} xs={12}>
+      <Grid item md={4} sm={12} xs={12}>
         <FilterValues selectedFilterColumns={selectedFilterColumns} />
+        {/* <Grid className={classes.feedbackbox}>
+          <DropDownMenus selectedFilterColumns={selectedFilterColumns} />
+        </Grid> */}
       </Grid>
-      <Divider />
       <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
         <ResultBox selectedFilterColumns={selectedFilterColumns} />
-      </Grid>
-      <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
-        <FeedbackBox selectedFilterColumns={selectedFilterColumns} />
       </Grid>
     </Grid>
   );

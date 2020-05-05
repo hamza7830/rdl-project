@@ -1,16 +1,23 @@
 import React from "react";
-import HomePage from "../src/componenets/HomePage";
-
+import CreateNewReports from "./componenets/CreateNewReports";
+import HomePage from "./componenets/HomePage.js";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import Route from "react-router-dom/Route";
 import { Provider } from "react-redux";
 import store from "./Store.js";
-// import FilterRequests from "./FrontEnd/MaintenanceRequests";
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
+      {/* <div>
         <HomePage />
-      </div>
+      </div> */}
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/newreports" component={CreateNewReports} />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
