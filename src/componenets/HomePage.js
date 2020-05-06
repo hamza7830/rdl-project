@@ -80,7 +80,10 @@ const HomePage = () => {
     }
   };
 
-  // let email = ["muhammad.hamza@northbaysolutions.net"];
+  let email = [
+    "muhammad.hamza@northbaysolutions.net",
+    "bilal.ahmad@northbaysolutions.net",
+  ];
 
   const onExecutionArn = (reportName) => {
     let executionKey = uuid();
@@ -91,7 +94,7 @@ const HomePage = () => {
         "--table_name": "DLA_Reports",
         "--report": `${reportName}`,
         "--email_addresses": "[]",
-        //JSON.stringify(email).replace(/\\/g, ""),
+        // "--email_addresses": JSON.stringify(email).replace(/\\/g, ""),
       },
       // type: "signedUrl",
       // bucket_name: "rdl-faizan-cdc",
@@ -159,6 +162,7 @@ const HomePage = () => {
               label="Select Report"
             >
               <MenuItem value={"feedbackReport"}>FeedBack Report</MenuItem>
+              <MenuItem value={"Report 2.0"}>Report 2.0</MenuItem>
               <MenuItem value={"Report 4.2"}>Report 4.2</MenuItem>
               <MenuItem value={"Report 5.2A"}>Report 5.2A</MenuItem>
             </Select>
