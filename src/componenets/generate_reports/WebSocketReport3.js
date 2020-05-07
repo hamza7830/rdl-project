@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setWebsocketReport3 } from "./actions/ColumnsActions";
+import { setWebsocketReport3 } from "../actions/ColumnsActions";
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {},
@@ -11,7 +11,7 @@ import { setWebsocketReport3 } from "./actions/ColumnsActions";
 //     fontFamily: "Times New Roman, Times, serif",
 //   },
 // }));
-const HomePage = () => {
+const WebSocketReport = () => {
   // const classes = useStyles();
   const dispatch = useDispatch();
   const executionData = useSelector((state) => state.executionData);
@@ -47,4 +47,4 @@ const HomePage = () => {
   return <></>;
 };
 
-export default HomePage;
+export default WebSocketReport;

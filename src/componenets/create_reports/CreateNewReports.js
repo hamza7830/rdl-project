@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { useSelector, useDispatch } from "react-redux";
-import Topbar from "./TopBar";
+import Topbar from "../topbar/TopBar";
 import { Grid } from "@material-ui/core";
 
 import SelectionColumns from "./SelectionColumns";
 import FilterColumns from "./FilterColumns";
-import { getColumns } from "./actions/ColumnsActions";
+import { getColumns } from "../actions/ColumnsActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,7 +29,7 @@ const CreateNewReports = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     let columns, columnsNew;
@@ -43,6 +43,7 @@ const CreateNewReports = () => {
           .join(" "),
       }));
       setProcessedColumns(columnsNew);
+      console.log("processed )))))))))))", columnsNew.sort());
     }
   }, [columnNames]);
 

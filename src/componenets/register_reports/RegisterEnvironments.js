@@ -6,9 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { getRegisterEntityMetadata } from "./actions/ColumnsActions";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-
+import { getRegisterEnvironmentGroup } from "../actions/ColumnsActions";
 import {
   CardContent,
   CardActions,
@@ -16,17 +14,14 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 
-const RegisterEntityMetaData = () => {
+const RegisterEnvironments = () => {
   const dispatch = useDispatch();
   const [OpenInputDialogueBox, setOpenInputDialogueBox] = useState(true);
   const [OpenResultDialogueBox, setOpenResultDialogueBox] = useState(true);
-  const [value, setValue] = useState("");
-  const [metadataloading, setmetadataLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [jsonPath, setJsonPath] = useState("");
-  const entityMetadata = useSelector((state) => state.entityMetadata);
+  const registerEnvironment = useSelector((state) => state.registerEnvironment);
 
   const onHandleInputCloseAndRefresh = () => {
     setOpenInputDialogueBox(false);
@@ -41,26 +36,21 @@ const RegisterEntityMetaData = () => {
     const jsonPathValue = e.target.value;
     setJsonPath(jsonPathValue);
   };
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-  };
+
   const onclick = () => {
     setOpenInputDialogueBox(false);
-    setmetadataLoading(true);
+    setLoading(true);
     const EnvironmentParams = {
-      Row_Json: `${jsonPath}`,
-      CreateTable: `${value}`,
-      wcu: "1",
-      rcu: "1",
+      json: `${jsonPath}`,
     };
-    dispatch(getRegisterEntityMetadata(EnvironmentParams));
+    dispatch(getRegisterEnvironmentGroup(EnvironmentParams));
   };
 
   return (
     <>
       <Grid>
-        {metadataloading ? (
-          Object.keys(entityMetadata).length > 0 ? (
+        {loading ? (
+          Object.keys(registerEnvironment).length > 0 ? (
             <Dialog
               fullWidth
               open={OpenResultDialogueBox}
@@ -68,7 +58,7 @@ const RegisterEntityMetaData = () => {
             >
               <Card>
                 <DialogTitle id="form-dialog-title">Report Result:</DialogTitle>
-                <DialogContent>{entityMetadata} </DialogContent>
+                <DialogContent>{registerEnvironment["message"]} </DialogContent>
                 <DialogActions>
                   <Button
                     onClick={onHandleResultCloseAndRefresh}
@@ -108,21 +98,6 @@ const RegisterEntityMetaData = () => {
                   />
                 </div>
               </CardContent>
-              <Typography variant="h5">want to Create Table</Typography>
-              <Divider />
-
-              <RadioGroup value={value} onChange={handleRadioChange}>
-                <FormControlLabel
-                  value="true"
-                  control={<Radio color="primary" />}
-                  label="True"
-                />
-                <FormControlLabel
-                  value="false"
-                  control={<Radio color="primary" />}
-                  label="False"
-                />
-              </RadioGroup>
               <Divider />
               <CardActions>
                 <Button color="primary" variant="outlined" onClick={onclick}>
@@ -142,4 +117,4 @@ const RegisterEntityMetaData = () => {
   );
 };
 
-export default RegisterEntityMetaData;
+export default RegisterEnvironments;

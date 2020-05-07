@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
 import { makeStyles } from "@material-ui/core/styles";
-import Topbar from "./TopBar";
+import Topbar from "../topbar/TopBar";
 import { useHistory } from "react-router-dom";
 
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import ResultBox from "./ResultBox";
-import FilesUrl from "./FilesUrl";
+import ResultBox from "../result_box/ResultBox";
+import FilesUrl from "../feedback_report/FilesUrl";
 
 import {
   getJobId,
   setUuidKey,
   getexecutionArn,
-} from "./actions/ColumnsActions";
+} from "../actions/ColumnsActions";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-import WebSocketReport3 from "./WebSocketReport3.js";
-import RegisterEnvironments from "./RegisterEnvironments.js";
-import RegisterEntityMetaData from "./RegisterEntityMetaData.js";
-import { EventBridge } from "aws-sdk";
+import WebSocketReport3 from "../generate_reports/WebSocketReport3.js";
+import RegisterEnvironments from "../register_reports/RegisterEnvironments.js";
+import RegisterEntityMetaData from "../register_reports/RegisterEntityMetaData.js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -49,7 +48,7 @@ const HomePage = () => {
   const [report, setReport] = useState("");
   const [environmentsAndGroup, setEnvironmentsAndGroup] = useState(false);
   const jobId = useSelector((state) => state.jobId);
-  const [createReport, setCreateReport] = useState(false);
+  // const [createReport, setCreateReport] = useState(false);
   const [entityMetadata, setEntityMetadata] = useState(false);
   const filteredValues = useSelector((state) => state.filterValues);
   const executionData = useSelector((state) => state.executionData);
@@ -80,10 +79,10 @@ const HomePage = () => {
     }
   };
 
-  let email = [
-    "muhammad.hamza@northbaysolutions.net",
-    "bilal.ahmad@northbaysolutions.net",
-  ];
+  // let email = [
+  //   "muhammad.hamza@northbaysolutions.net",
+  //   "bilal.ahmad@northbaysolutions.net",
+  // ];
 
   const onExecutionArn = (reportName) => {
     let executionKey = uuid();

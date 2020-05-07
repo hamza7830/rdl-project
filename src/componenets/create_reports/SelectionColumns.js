@@ -9,26 +9,26 @@ import {
   Checkbox,
   Typography,
   Divider,
-  FormControlLabel
+  FormControlLabel,
 } from "@material-ui/core";
 
-import { setSelectedColumns } from "./actions/ColumnsActions";
+import { setSelectedColumns } from "../actions/ColumnsActions";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: { overflow: "auto", maxHeight: "70%" },
   item: {
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 }));
 
-const SelectionColumns = props => {
+const SelectionColumns = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { processedColumns } = props;
   const [selectedColumns, setSelectionColumns] = useState([]);
 
-  const onColumnsSelected = async event => {
+  const onColumnsSelected = async (event) => {
     const { name } = event.target;
     if (event.target.checked) {
       const selected = [...selectedColumns];
@@ -54,7 +54,7 @@ const SelectionColumns = props => {
             <Grid item className={classes.item} md={10} sm={12} xs={12}>
               <Typography variant="h5">Selection Columns</Typography>
               <Divider />
-              {Object.keys(processedColumns).map(field => {
+              {Object.keys(processedColumns).map((field) => {
                 return (
                   <FormControlLabel
                     control={

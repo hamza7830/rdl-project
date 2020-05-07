@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import FilterValues from "./FilterValues";
-import ResultBox from "./ResultBox";
+import ResultBox from "../result_box/ResultBox";
 // import DropDownMenus from "./DropDownMenus.js";
 
 const useStyles = makeStyles(() => ({

@@ -31,7 +31,7 @@ const ResultBox = () => {
   const result = useSelector((state) => state.result);
   const error = useSelector((state) => state.errorExecutionArn);
   const WebsocketData = useSelector((state) => state.WebsocketData);
-  const executionData = useSelector((state) => state.executionData);
+  // const executionData = useSelector((state) => state.executionData);
 
   // const executionData = useSelector(state => state.executionData);
 
@@ -86,7 +86,11 @@ const ResultBox = () => {
             <Card className={classes.dialog}>
               <DialogTitle id="form-dialog-title">Query Result:</DialogTitle>
               <DialogContent>
-                <a href={`${parsedResult["S3_URL"]}`} target="_blank">
+                <a
+                  href={`${parsedResult["S3_URL"]}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   {parsedResult["S3_URL"]
                     ? parsedResult["S3_URL"]
                     : errorResult["message"]}
@@ -110,7 +114,11 @@ const ResultBox = () => {
               <Card>
                 <DialogTitle id="form-dialog-title">Report Result:</DialogTitle>
                 <DialogContent>
-                  <a href={`${reportResult}`} target="_blank">
+                  <a
+                    href={`${reportResult}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     {reportResult}
                   </a>
                 </DialogContent>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getFilesUrl } from "./actions/ColumnsActions";
+import { getFilesUrl } from "../actions/ColumnsActions";
 import { Grid, Card, Button } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -35,20 +35,20 @@ const FilesUrl = () => {
         uuid: `${key}`,
       };
       try {
-        await dispatch(getFilesUrl(params));
+        dispatch(getFilesUrl(params));
       } catch {}
     }
-  });
+  }, [dispatch, jobId, key]);
 
   useEffect(() => {
     if (glueJobStatus === true) {
       getFilesUrlCallback();
     }
-  }, [glueJobStatus]);
+  }, [getFilesUrlCallback, glueJobStatus]);
 
   useEffect(() => {
     getFilesUrlCallback();
-  }, []);
+  }, [getFilesUrlCallback]);
 
   return (
     <>
@@ -60,7 +60,11 @@ const FilesUrl = () => {
               <Card>
                 <DialogTitle id="form-dialog-title">Query Result:</DialogTitle>
                 <DialogContent>
-                  <a href={`${filesUrl.data["body"]}`} target="_blank">
+                  <a
+                    href={`${filesUrl.data["body"]}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     {filesUrl.data["body"].length === 0
                       ? "Empty Array Return"
                       : filesUrl.data["body"]}

@@ -1,6 +1,6 @@
 import React from "react";
-import CreateNewReports from "./componenets/CreateNewReports";
-import HomePage from "./componenets/HomePage.js";
+import CreateNewReports from "./componenets/create_reports/CreateNewReports";
+import HomePage from "./componenets/home_page/HomePage.js";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import Route from "react-router-dom/Route";
 import { Provider } from "react-redux";

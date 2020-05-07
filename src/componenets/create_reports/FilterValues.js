@@ -9,27 +9,27 @@ import {
   Button,
   Typography,
   Grid,
-  TextField
+  TextField,
 } from "@material-ui/core";
 
-import { setFilterColumns, getResult } from "./actions/ColumnsActions";
+import { setFilterColumns, getResult } from "../actions/ColumnsActions";
 
 const useStyles = makeStyles(() => ({
   inputbox: { maxHeight: "60vh", overflow: "auto" },
   textfield: {
-    padding: "5px"
-  }
+    padding: "5px",
+  },
 }));
 
-const FilterValues = props => {
+const FilterValues = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { selectedFilterColumns } = props;
   let [filterValues, setFilterValues] = useState({});
-  const selectedColumns = useSelector(state => state.selectedColumns);
-  const filteredValues = useSelector(state => state.filterValues);
+  const selectedColumns = useSelector((state) => state.selectedColumns);
+  const filteredValues = useSelector((state) => state.filterValues);
 
-  const inputFiterValue = e => {
+  const inputFiterValue = (e) => {
     const filterValue = e.target.value;
     const filterKey = e.target.name;
     filterValues[filterKey] = filterValue;
@@ -47,7 +47,7 @@ const FilterValues = props => {
       .replace(/"/g, "");
     const queryParams = {
       where: filteredAttributes,
-      select: selectedAttributes
+      select: selectedAttributes,
     };
     const payload = JSON.stringify(queryParams);
     try {
@@ -66,7 +66,7 @@ const FilterValues = props => {
               <Typography variant="h5">Filter Candidates</Typography>
               <Divider />
               <CardContent>
-                {Object.keys(selectedFilterColumns).map(field => (
+                {Object.keys(selectedFilterColumns).map((field) => (
                   <div
                     className={classes.textfield}
                     key={selectedFilterColumns[field].name}
