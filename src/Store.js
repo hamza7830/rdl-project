@@ -3,12 +3,12 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import ColumnsReducer from "../src/componenets/reducers/ColumnsReducer";
+import RootReducer from "../src/componenets/reducers/RootReducer";
 
 const middlewares = [thunk, logger];
 const appliedMiddlewares = applyMiddleware(...middlewares);
 const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
 
-const store = createStore(ColumnsReducer, composeEnhancers(appliedMiddlewares));
+const store = createStore(RootReducer, composeEnhancers(appliedMiddlewares));
 
 export default store;

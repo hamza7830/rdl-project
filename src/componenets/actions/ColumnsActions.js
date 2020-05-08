@@ -3,9 +3,9 @@ import Axios from "axios";
 export const GET_COLUMNS_STARTED = "GET_COLUMNS_STARTED";
 export const GET_COLUMNS_SUCCEEDED = "GET_COLUMNS_SUCCEEDED";
 export const GET_COLUMNS_FAILED = "GET_COLUMNS_FAILED";
-export const GET_RESULT_STARTED = "GET_RESULT_STARTED";
-export const GET_RESULT_SUCCEEDED = "GET_RESULT_SUCCEEDED";
-export const GET_RESULT_FAILED = "GET_RESULT_FAILED";
+export const GET_QUERY_RESULT_STARTED = "GET_QUERY_RESULT_STARTED";
+export const GET_QUERY_RESULT_SUCCEEDED = "GET_QUERY_RESULT_SUCCEEDED";
+export const GET_QUERY_RESULT_FAILED = "GET_QUERY_RESULT_FAILED";
 
 export const GET_JOBID_STARTED = "GET_JOBID_STARTED";
 export const GET_JOBID_SUCCEEDED = "GET_JOBID_SUCCEEDED";
@@ -129,16 +129,16 @@ const onGetFilesUrlFailed = (error) => ({
 });
 
 const onGetResultStarted = () => ({
-  type: GET_RESULT_STARTED,
+  type: GET_QUERY_RESULT_STARTED,
 });
 
 const onGetResultSucceeded = (response) => ({
-  type: GET_RESULT_SUCCEEDED,
+  type: GET_QUERY_RESULT_SUCCEEDED,
   response,
 });
 
 const onGetResultFailed = (error) => ({
-  type: GET_RESULT_FAILED,
+  type: GET_QUERY_RESULT_FAILED,
   error,
 });
 

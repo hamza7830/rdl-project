@@ -1,10 +1,4 @@
 import {
-  GET_COLUMNS_FAILED,
-  GET_COLUMNS_STARTED,
-  GET_COLUMNS_SUCCEEDED,
-  GET_QUERY_RESULT_STARTED,
-  GET_QUERY_RESULT_SUCCEEDED,
-  GET_QUERY_RESULT_FAILED,
   SET_SELECTED_COLUMNS,
   SET_FILTER_COLUMNS,
   SET_UUID_KEY,
@@ -19,23 +13,13 @@ import {
   GET_EXECUTION_ARN_STARTED,
   GET_EXECUTION_ARN_FAILED,
   SET_WEBSOCKET_REPORT_3,
-  GET_REGISTER_ENVIRONMENT_STARTED,
-  GET_REGISTER_ENVIRONMENT_SUCCEEDED,
-  GET_REGISTER_ENVIRONMENT_FAILED,
-  REGISTER_ENTITY_METADATA_STARTED,
-  REGISTER_ENTITY_METADATA_SUCCEEDED,
-  REGISTER_ENTITY_METADATA_FAILED,
 } from "../actions/ColumnsActions";
 
 const defaultState = {
-  isLoading: false,
   isLoadingReport: false,
-  isResultLoading: false,
   isLoadingFeedbackQuery: false,
   error: {},
   errorExecutionArn: {},
-  columns: [],
-  result: {},
   jobId: {},
   key: {},
   filesUrl: [],
@@ -44,54 +28,10 @@ const defaultState = {
   filterValues: {},
   executionData: [],
   WebsocketData: {},
-  registerEnvironment: {},
-  entityMetadata: {},
 };
-const columnsReducer = (state = defaultState, action) => {
+const ReportsReducer = (state = defaultState, action) => {
   let newState;
   switch (action.type) {
-    case REGISTER_ENTITY_METADATA_STARTED:
-      newState = {
-        ...state,
-        isLoading: true,
-      };
-      return newState;
-
-    case REGISTER_ENTITY_METADATA_FAILED:
-      newState = {
-        ...state,
-        isLoading: false,
-        error: action.error,
-      };
-      return newState;
-    case REGISTER_ENTITY_METADATA_SUCCEEDED:
-      newState = {
-        ...state,
-        entityMetadata: action.response.data,
-      };
-      return newState;
-
-    case GET_REGISTER_ENVIRONMENT_STARTED:
-      newState = {
-        ...state,
-        isLoading: true,
-      };
-      return newState;
-
-    case GET_REGISTER_ENVIRONMENT_FAILED:
-      newState = {
-        ...state,
-        isLoading: false,
-        error: action.error,
-      };
-      return newState;
-    case GET_REGISTER_ENVIRONMENT_SUCCEEDED:
-      newState = {
-        ...state,
-        registerEnvironment: action.response.data,
-      };
-      return newState;
-
     case GET_EXECUTION_ARN_STARTED:
       newState = {
         ...state,
@@ -111,27 +51,6 @@ const columnsReducer = (state = defaultState, action) => {
         ...state,
         // isLoadingReport: false,
         executionData: action.response.data,
-      };
-      return newState;
-    case GET_COLUMNS_STARTED:
-      newState = {
-        ...state,
-        isLoading: true,
-      };
-      return newState;
-
-    case GET_COLUMNS_FAILED:
-      newState = {
-        ...state,
-        isLoading: false,
-        error: action.error,
-      };
-      return newState;
-    case GET_COLUMNS_SUCCEEDED:
-      newState = {
-        ...state,
-        isLoading: false,
-        columns: action.response.data.body,
       };
       return newState;
 
@@ -178,27 +97,6 @@ const columnsReducer = (state = defaultState, action) => {
       };
       return newState;
 
-    case GET_QUERY_RESULT_STARTED:
-      newState = {
-        ...state,
-        isResultLoading: true,
-      };
-      return newState;
-
-    case GET_QUERY_RESULT_FAILED:
-      newState = {
-        ...state,
-        isResultLoading: false,
-        error: action.error,
-      };
-      return newState;
-    case GET_QUERY_RESULT_SUCCEEDED:
-      newState = {
-        ...state,
-        isResultLoading: false,
-        result: action.response.data.body,
-      };
-      return newState;
     case SET_SELECTED_COLUMNS:
       newState = {
         ...state,
@@ -238,4 +136,4 @@ const columnsReducer = (state = defaultState, action) => {
   }
 };
 
-export default columnsReducer;
+export default ReportsReducer;

@@ -26,11 +26,17 @@ const useStyles = makeStyles(() => ({
 const ResultBox = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const resutlLoading = useSelector((state) => state.isResultLoading);
-  const resutlLoadingReport42 = useSelector((state) => state.isLoadingReport);
-  const result = useSelector((state) => state.result);
-  const error = useSelector((state) => state.errorExecutionArn);
-  const WebsocketData = useSelector((state) => state.WebsocketData);
+  const resutlLoading = useSelector(
+    (state) => state.generateQueryReducer.isResultLoading
+  );
+  const resutlLoadingReport42 = useSelector(
+    (state) => state.reportsReducer.isLoadingReport
+  );
+  const result = useSelector((state) => state.generateQueryReducer.result);
+  const error = useSelector((state) => state.generateQueryReducer.error);
+  const WebsocketData = useSelector(
+    (state) => state.reportsReducer.WebsocketData
+  );
   // const executionData = useSelector((state) => state.executionData);
 
   // const executionData = useSelector(state => state.executionData);

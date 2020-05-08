@@ -2,19 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setWebsocketReport3 } from "../actions/ColumnsActions";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {},
-//   topbar: {
-//     maxHeight: "50%",
-//     backgroundColor: "#3f51b5",
-//     color: "#FFFFFF",
-//     fontFamily: "Times New Roman, Times, serif",
-//   },
-// }));
 const WebSocketReport = () => {
-  // const classes = useStyles();
   const dispatch = useDispatch();
-  const executionData = useSelector((state) => state.executionData);
+  const executionData = useSelector(
+    (state) => state.reportsReducer.executionData
+  );
 
   useEffect(() => {
     if (Object.keys(executionData).length > 0) {

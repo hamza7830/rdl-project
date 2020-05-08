@@ -26,8 +26,12 @@ const FilterValues = (props) => {
   const dispatch = useDispatch();
   const { selectedFilterColumns } = props;
   let [filterValues, setFilterValues] = useState({});
-  const selectedColumns = useSelector((state) => state.selectedColumns);
-  const filteredValues = useSelector((state) => state.filterValues);
+  const selectedColumns = useSelector(
+    (state) => state.reportsReducer.selectedColumns
+  );
+  const filteredValues = useSelector(
+    (state) => state.reportsReducer.filterValues
+  );
 
   const inputFiterValue = (e) => {
     const filterValue = e.target.value;

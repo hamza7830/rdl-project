@@ -47,11 +47,15 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [report, setReport] = useState("");
   const [environmentsAndGroup, setEnvironmentsAndGroup] = useState(false);
-  const jobId = useSelector((state) => state.jobId);
+  const jobId = useSelector((state) => state.reportsReducer.jobId);
   // const [createReport, setCreateReport] = useState(false);
   const [entityMetadata, setEntityMetadata] = useState(false);
-  const filteredValues = useSelector((state) => state.filterValues);
-  const executionData = useSelector((state) => state.executionData);
+  const filteredValues = useSelector(
+    (state) => state.reportsReducer.filterValues
+  );
+  const executionData = useSelector(
+    (state) => state.reportsReducer.executionData
+  );
 
   const onFeedback = () => {
     let key = uuid();
@@ -147,78 +151,68 @@ const HomePage = () => {
         <Grid item className={classes.topbar} sm={12} md={12} xs={12}>
           <Topbar />
         </Grid>
-        <Grid item sm={12} md={2}></Grid>
-        <Grid item sm={12} md={10}>
-          <FormControl variant="filled" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Select Reports
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={report}
-              onChange={handleReport}
-              label="Select Report"
-            >
-              <MenuItem value={"feedbackReport"}>FeedBack Report</MenuItem>
-              <MenuItem value={"Report 2.0"}>Report 2.0</MenuItem>
-              <MenuItem value={"Report 4.2"}>Report 4.2</MenuItem>
-              <MenuItem value={"Report 5.2A"}>Report 5.2A</MenuItem>
-            </Select>
-          </FormControl>
-          {Object.keys(jobId).length > 0 && <FilesUrl jobId={jobId} />}
-          {Object.keys(executionData).length > 0 ? <WebSocketReport3 /> : ""}
-          {/* {console.log("executionData is >>>>>>>.", executionData["executionArn"])} */}
+        <Grid container>
+          <Grid container justify="center" sm={12} md={4}>
+            <FormControl variant="filled" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Select Reports
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={report}
+                onChange={handleReport}
+                label="Select Report"
+              >
+                <MenuItem value={"feedbackReport"}>FeedBack Report</MenuItem>
+                <MenuItem value={"Report 2.0"}>Report 2.0</MenuItem>
+                <MenuItem value={"Report 4.2"}>Report 4.2</MenuItem>
+                <MenuItem value={"Report 5.2A"}>Report 5.2A</MenuItem>
+              </Select>
+            </FormControl>
+            {Object.keys(jobId).length > 0 && <FilesUrl jobId={jobId} />}
+            {Object.keys(executionData).length > 0 ? <WebSocketReport3 /> : ""}
+          </Grid>
+          <Grid container justify="center" sm={12} md={4}>
+            <FormControl variant="filled" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Register
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={report}
+                onChange={handleRegister}
+                label="Register"
+              >
+                <MenuItem value={"environmentsGroup"}>
+                  Register Environments and Groups
+                </MenuItem>
+                <MenuItem value={"metaData"}>Register Entity Metadata</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid container justify="center" sm={12} md={4}>
+            <FormControl variant="filled" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                New Reports
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={report}
+                onChange={handleNewReports}
+                label="Register"
+              >
+                <MenuItem value={"createNewReports"}>
+                  Create New Reports
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
-        <Grid item sm={12} md={2}></Grid>
-        <Grid item sm={12} md={10}>
-          <FormControl variant="filled" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Register
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={report}
-              onChange={handleRegister}
-              label="Register"
-            >
-              <MenuItem value={"environmentsGroup"}>
-                Register Environments and Groups
-              </MenuItem>
-              <MenuItem value={"metaData"}>Register Entity Metadata</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item sm={12} md={2}></Grid>
-        {/* <Grid item className={classes.reportButton}> */}
-        {/* <Button
-            className={classes.createreportButton}
-            variant="contained"
-            color="default"
-            onClick={onclick}
-          >
-            Create New Reports
-          </Button> */}
-
-        <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            New Reports
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={report}
-            onChange={handleNewReports}
-            label="Register"
-          >
-            <MenuItem value={"createNewReports"}>Create New Reports</MenuItem>
-          </Select>
-        </FormControl>
-        {/* </Grid> */}
         {environmentsAndGroup ? <RegisterEnvironments /> : ""}
         {entityMetadata ? <RegisterEntityMetaData /> : ""}
-        {/* {createReport ? <CreateNewReports /> : ""} */}
         <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
           <ResultBox />
         </Grid>

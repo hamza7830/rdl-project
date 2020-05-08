@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
 const CreateNewReports = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const columnNames = useSelector((state) => state.columns);
+  const columnNames = useSelector(
+    (state) => state.generateQueryReducer.columns
+  );
   const [processedColumns, setProcessedColumns] = useState([]);
 
   useEffect(() => {
