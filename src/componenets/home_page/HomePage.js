@@ -152,7 +152,7 @@ const HomePage = () => {
           <Topbar />
         </Grid>
         <Grid container>
-          <Grid container justify="center" sm={12} md={4}>
+          <Grid container item justify="center" sm={12} md={4}>
             <FormControl variant="filled" className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">
                 Select Reports
@@ -173,7 +173,7 @@ const HomePage = () => {
             {Object.keys(jobId).length > 0 && <FilesUrl jobId={jobId} />}
             {Object.keys(executionData).length > 0 ? <WebSocketReport3 /> : ""}
           </Grid>
-          <Grid container justify="center" sm={12} md={4}>
+          <Grid container item justify="center" sm={12} md={4}>
             <FormControl variant="filled" className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">
                 Register
@@ -192,7 +192,7 @@ const HomePage = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid container justify="center" sm={12} md={4}>
+          <Grid container item justify="center" sm={12} md={4}>
             <FormControl variant="filled" className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">
                 New Reports

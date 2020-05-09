@@ -11,13 +11,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const FilesUrl = () => {
   const [open, setOpen] = useState(true);
   const dispatch = useDispatch();
-  const glueJobStatus = useSelector((state) => state.glueJobState);
-  const jobId = useSelector((state) => state.jobId);
+  const glueJobStatus = useSelector(
+    (state) => state.reportsReducer.glueJobState
+  );
+  const jobId = useSelector((state) => state.reportsReducer.jobId);
 
-  const key = useSelector((state) => state.key);
-  const filesUrl = useSelector((state) => state.filesUrl);
+  const key = useSelector((state) => state.reportsReducer.key);
+  const filesUrl = useSelector((state) => state.reportsReducer.filesUrl);
   const feedbackQueryLoading = useSelector(
-    (state) => state.isLoadingFeedbackQuery
+    (state) => state.reportsReducer.isLoadingFeedbackQuery
   );
 
   const onHandleCloseAndRefresh = () => {
