@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setWebsocketReport3 } from "../actions/ColumnsActions";
+import { setWebsocketReport3 } from "../redux/actions/ColumnsActions";
 
 const WebSocketReport = () => {
   const dispatch = useDispatch();
@@ -30,10 +30,7 @@ const WebSocketReport = () => {
         console.log("After establish a connection", event.data);
         dispatch(setWebsocketReport3(event.data));
       };
-      // client.onclose = function (event) {};
     }
-    // websocketFunction();
-    // keepAlive();
   });
 
   return <></>;

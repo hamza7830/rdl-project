@@ -12,7 +12,6 @@ import {
 
 import FilterValues from "./FilterValues";
 import ResultBox from "../result_box/ResultBox";
-// import DropDownMenus from "./DropDownMenus.js";
 
 const useStyles = makeStyles(() => ({
   filtercolumns: {
@@ -89,9 +88,6 @@ const FilterColumns = (props) => {
       <Grid item md={1}></Grid>
       <Grid item md={4} sm={12} xs={12}>
         <FilterValues selectedFilterColumns={selectedFilterColumns} />
-        {/* <Grid className={classes.feedbackbox}>
-          <DropDownMenus selectedFilterColumns={selectedFilterColumns} />
-        </Grid> */}
       </Grid>
       <Grid item className={classes.resultSelection} md={12} sm={12} xs={12}>
         <ResultBox selectedFilterColumns={selectedFilterColumns} />

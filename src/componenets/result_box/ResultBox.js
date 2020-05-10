@@ -37,9 +37,6 @@ const ResultBox = () => {
   const WebsocketData = useSelector(
     (state) => state.reportsReducer.WebsocketData
   );
-  // const executionData = useSelector((state) => state.executionData);
-
-  // const executionData = useSelector(state => state.executionData);
 
   let parsedResult = {};
   if (Object.keys(result).length !== 0) {
@@ -64,13 +61,6 @@ const ResultBox = () => {
       .replace(/\\/g, "")
       .replace("[", "");
   }
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
 
   const onHandleCloseAndRefresh = () => {
     setOpen(false);

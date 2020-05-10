@@ -1,21 +1,19 @@
 import React from "react";
-import CreateNewReports from "./componenets/create_reports/CreateNewReports";
-import HomePage from "./componenets/home_page/HomePage.js";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import Route from "react-router-dom/Route";
-import { Provider } from "react-redux";
 import store from "./Store.js";
+import { Provider } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import HomePage from "./componenets/home_page/HomePage.js";
+import GenerateReport from "./componenets/generate_report/GenerateReport";
+import CreateNewReports from "./componenets/create_reports/CreateNewReports";
 
 function App() {
   return (
     <Provider store={store}>
-      {/* <div>
-        <HomePage />
-      </div> */}
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/newreports" component={CreateNewReports} />
+          {/* <Route exact path="/" component={HomePage} /> */}
+          <Route path="/" component={GenerateReport} />
+          {/* <Route exact path="/newreports" component={CreateNewReports} /> */}
         </Switch>
       </BrowserRouter>
     </Provider>

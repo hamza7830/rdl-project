@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import RootReducer from "../src/componenets/reducers/RootReducer";
+import RootReducer from "./componenets/redux/reducers/RootReducer";
 
 const middlewares = [thunk, logger];
 const appliedMiddlewares = applyMiddleware(...middlewares);

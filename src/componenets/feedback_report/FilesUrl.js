@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getFilesUrl } from "../actions/ColumnsActions";
+import { getFilesUrl } from "../redux/actions/ColumnsActions";
 import { Grid, Card, Button } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";

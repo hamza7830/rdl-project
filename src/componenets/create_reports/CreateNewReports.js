@@ -6,7 +6,7 @@ import { Grid } from "@material-ui/core";
 
 import SelectionColumns from "./SelectionColumns";
 import FilterColumns from "./FilterColumns";
-import { getColumns } from "../actions/ColumnsActions";
+import { getColumns } from "../../redux/actions/ColumnsActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -45,7 +45,6 @@ const CreateNewReports = () => {
           .join(" "),
       }));
       setProcessedColumns(columnsNew);
-      console.log("processed )))))))))))", columnsNew.sort());
     }
   }, [columnNames]);
 

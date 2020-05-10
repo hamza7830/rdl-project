@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { getRegisterEnvironmentGroup } from "../actions/ColumnsActions";
+import { getRegisterEnvironmentGroup } from "../redux/actions/ColumnsActions";
 import {
   CardContent,
   CardActions,

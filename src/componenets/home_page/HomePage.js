@@ -13,12 +13,12 @@ import {
   getJobId,
   setUuidKey,
   getexecutionArn,
-} from "../actions/ColumnsActions";
+} from "../redux/actions/ColumnsActions";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-import WebSocketReport3 from "../generate_reports/WebSocketReport3.js";
+import WebSocketReport3 from "../websocket_report/WebSocketReport3.js";
 import RegisterEnvironments from "../register_reports/RegisterEnvironments.js";
 import RegisterEntityMetaData from "../register_reports/RegisterEntityMetaData.js";
 
@@ -48,7 +48,6 @@ const HomePage = () => {
   const [report, setReport] = useState("");
   const [environmentsAndGroup, setEnvironmentsAndGroup] = useState(false);
   const jobId = useSelector((state) => state.reportsReducer.jobId);
-  // const [createReport, setCreateReport] = useState(false);
   const [entityMetadata, setEntityMetadata] = useState(false);
   const filteredValues = useSelector(
     (state) => state.reportsReducer.filterValues
@@ -99,17 +98,13 @@ const HomePage = () => {
         "--email_addresses": "[]",
         // "--email_addresses": JSON.stringify(email).replace(/\\/g, ""),
       },
-      // type: "signedUrl",
-      // bucket_name: "rdl-faizan-cdc",
     };
 
     const Input = JSON.stringify(msg);
     const executionParams = {
       input: `${Input}`,
-      // name: `${executionKey}`,
       stateMachineArn:
         "arn:aws:states:us-east-1:777929656848:stateMachine:rdl-websocket-workflow",
-      // "arn:aws:states:us-east-1:777929656848:stateMachine:rdl-glue-job-state-machine",
     };
     try {
       console.log("execution is ", executionParams);
@@ -140,8 +135,10 @@ const HomePage = () => {
   };
 
   const handleNewReports = (event) => {
-    if ((event.target.value = "createNewReports")) {
+    if (event.target.value === "createNewReports") {
       history.push("/newreports/");
+    } else if (event.target.value === "generateReports") {
+      history.push("/generatereport/");
     }
   };
 
@@ -207,6 +204,7 @@ const HomePage = () => {
                 <MenuItem value={"createNewReports"}>
                   Create New Reports
                 </MenuItem>
+                <MenuItem value={"generateReports"}>Generate Report</MenuItem>
               </Select>
             </FormControl>
           </Grid>
